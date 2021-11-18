@@ -1,13 +1,14 @@
 import jwt, { Algorithm, JwtPayload } from 'jsonwebtoken';
+import {algorithm, secretKey, expiresInRefresh, expiresInAccess} from '../config/jwt-config'
 
 class Jwt {
-    private secretKey = 'merrccury';
+    private secretKey = secretKey;
 
-    private expiresInAccess = 3600;
+    private expiresInAccess = expiresInAccess;
 
-    private expiresInRefresh = 86400;
+    private expiresInRefresh = expiresInRefresh;
 
-    private algorithm: Algorithm = 'HS256';
+    private algorithm: Algorithm = algorithm;
 
     private accessToken: string | null = null;
 
@@ -34,7 +35,6 @@ class Jwt {
             algorithm: this.algorithm,
             expiresIn: this.expiresInRefresh,
         });
-        // console.log('this.refreshToken', this.refreshToken);
         return this.refreshToken;
     }
 

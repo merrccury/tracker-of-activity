@@ -4,12 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const jwt_config_1 = require("../config/jwt-config");
 class Jwt {
     constructor() {
-        this.secretKey = 'merrccury';
-        this.expiresInAccess = 3600;
-        this.expiresInRefresh = 86400;
-        this.algorithm = 'HS256';
+        this.secretKey = jwt_config_1.secretKey;
+        this.expiresInAccess = jwt_config_1.expiresInAccess;
+        this.expiresInRefresh = jwt_config_1.expiresInRefresh;
+        this.algorithm = jwt_config_1.algorithm;
         this.accessToken = null;
         this.refreshToken = null;
     }
@@ -28,7 +29,6 @@ class Jwt {
             algorithm: this.algorithm,
             expiresIn: this.expiresInRefresh,
         });
-        // console.log('this.refreshToken', this.refreshToken);
         return this.refreshToken;
     }
     parseToken(token) {
