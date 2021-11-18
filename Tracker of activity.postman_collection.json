@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "ece0b915-67eb-4667-bb6b-1c6ce61bc0b3",
+		"name": "Tracker of activity",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"merrc\",\n    \"password\": \"qwerty\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5555/auth",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/start-work",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTYxZDY2YzdmZjFmOGQyNTI5NDhhNCIsImlhdCI6MTYzNzIyODg1OCwiZXhwIjoxNjM3MjMyNDU4fQ.4wJqr__AjZRBpL_kwVggX8JIyvaBccN6kiR7C-sdQc8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:5555/start-work",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"start-work"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/end-work",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTYxZDY2YzdmZjFmOGQyNTI5NDhhNCIsImlhdCI6MTYzNzIyODg1OCwiZXhwIjoxNjM3MjMyNDU4fQ.4wJqr__AjZRBpL_kwVggX8JIyvaBccN6kiR7C-sdQc8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:5555/end-work",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"end-work"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/work-time",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTYxZDY2YzdmZjFmOGQyNTI5NDhhNCIsImlhdCI6MTYzNzIzODIxMCwiZXhwIjoxNjM3MjQxODEwfQ.Uitc31K2aL9pRUs0pbkqAkP7VNqOUz3I5RDwr7cUz_8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:5555/work-time?from-date=2021-11-18&to-date=2021-11-21",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"work-time"
+					],
+					"query": [
+						{
+							"key": "from-date",
+							"value": "2021-11-18"
+						},
+						{
+							"key": "to-date",
+							"value": "2021-11-21"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "tracker-of-activity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.13",
+    "passport": "^0.5.0",
+    "passport-jwt": "^4.0.0",
+    "redis": "^3.1.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/passport-jwt": "^3.0.6",
+    "@types/redis": "^2.8.32",
+    "typescript": "^4.5.2"
+  }
+}

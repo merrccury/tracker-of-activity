@@ -1,0 +1,35 @@
+version: '3.3'
+services:
+  web-app:
+    image: merrcc/tracker-of-activiry
+    container_name: tracker-of-activity
+    ports:
+      - "5555:5555"
+    volumes:
+      - ./app:/app
+#    env_file:
+#      - ./app/dev.env
+    environment:
+      - mongo=mongo-host
+      - mongoPort=27017
+      - redisPort=6379
+      - redis=redis-host
+      - port=5555
+    links:
+      - mongodb
+      - redis
+  mongodb:
+    image: mongo
+    container_name: mongo-host
+    volumes:
+      - /home/oem/mongodb/databases:/data/db
+    ports:
+      - "27017:27017"
+    restart: unless-stopped
+  redis:
+    image: redis
+    container_name: redis-host
+    ports:
+      - "6479:6379"
+
+
