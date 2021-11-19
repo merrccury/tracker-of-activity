@@ -1,8 +1,8 @@
 version: '3.3'
 services:
   web-app:
-    image: merrcc/tracker-of-activiry
-    #build: .
+    #image: merrcc/tracker-of-activiry
+    build: .
     container_name: tracker-of-activity
     ports:
       - "5555:5555"

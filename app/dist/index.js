@@ -8,6 +8,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const passport_strategy_1 = __importDefault(require("./security /passport-strategy"));
 const auth_conroller_1 = require("./controllers/auth-conroller");
 const work_controller_1 = require("./controllers/work-controller");
+console.log(process.env);
 const app = express_1.default();
 app.use(body_parser_1.default.json());
 app.post('/auth', auth_conroller_1.logIn);

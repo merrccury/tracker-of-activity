@@ -2,9 +2,19 @@ import {Request, Response} from "express";
 import {Tracker} from "../models";
 import {sendResponse} from './utils'
 import mongoose from "mongoose";
-import RedisCR from '../models/redisCR'
+import redis from "redis";
+import {promisify} from "util";
 
-const redis = new RedisCR();
+const redisClient = redis.createClient({
+    port: parseInt(process.env.redisPort),
+    host: process.env.redis
+})
+
+
+const readCache = promisify(redisClient.get).bind(redisClient);
+console.log('readCache', readCache)
+const setCache = promisify(redisClient.set).bind(redisClient);
+console.log('setCache', setCache)
 
 export async function startWork(req: Request, res: Response) {
     if (req.user === undefined)
@@ -57,7 +67,8 @@ export async function workTime(req: Request, res: Response) {
     const to = req.query['to-date'];
     const key = `${req.user?.id}-${from}-${to}`;
 
-    let cache = await redis.read(key);
+    let cache = await readCache(key);
+
     if (cache !== null) {
         return res.send({
             totalHours: parseInt(cache, 10),
@@ -92,7 +103,7 @@ export async function workTime(req: Request, res: Response) {
     }]).exec();
 
     let total: number = result.length === 0 ? 0 : Math.floor(result[0].total / 1000 / 60 / 60);
-    await redis.create(key, total.toString(10));
+    await setCache(key, total.toString(10));
     res.send({
         totalHours: total,
         cache: false

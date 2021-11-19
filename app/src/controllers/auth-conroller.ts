@@ -6,17 +6,16 @@ import Jwt from '../security /jwt';
 
 const jwt = new Jwt();
 const saltRounds = 12;
-const salt = bcrypt.genSaltSync(saltRounds);
 
 export async function logIn(req: Request, res: Response) {
     let {username, password} = req.body;
 
-    password = bcrypt.hashSync(password, salt);
     if (username === undefined || password === undefined)
         return sendResponse(res, 'Invalid parameters', 400)
     try {
         const targetUser = await User.findOne({username: username}).exec();
-        if (targetUser.password !== password)
+        const passwordCompare = await bcrypt.compare(password, targetUser.password)
+        if (!passwordCompare)
             return sendResponse(res, 'Invalid credentials', 401)
         return res.send({
             access_token: jwt.createAccessToken({id: targetUser.id})
@@ -40,8 +39,8 @@ export async function signUp(req: Request, res: Response) {
     if (accountCheck !== 0)
         return sendResponse(res, `User with username: ${username} already exist`, 400)
 
-
-    const hash = bcrypt.hashSync(password, salt);
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hash = await bcrypt.hash(password, salt);
 
     const createdUser = await User.create({
         username: username,
